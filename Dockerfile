@@ -1,15 +1,10 @@
-# Using a compact OS
-FROM alpine:latest
-
-MAINTAINER Golfen Guo <golfen.guo@daocloud.io> 
-
-# Install Nginx
-RUN apk --update add nginx
-
-# Add 2048 stuff into Nginx server
-COPY . /usr/share/nginx/html
-
-EXPOSE 80
-
-# Start Nginx and keep it from running background
-CMD ["nginx", "-g", "daemon off;"]
+#VERSION 0.0.1
+FROM centos:latest
+yum install openssh-server 
+CMD mkdir -p /data/www/site_view
+VOLUME ["/data/www/site_view/*", "/data/www/site_view/*"]
+ENV JAVA_HOME /usr/local/jdk1.7.0_51/
+EXPOSE 6557
+EXPOSE 6558
+WORKDIR /data/www/site_view/
+CMD ["./restart_pagehar.sh"]
