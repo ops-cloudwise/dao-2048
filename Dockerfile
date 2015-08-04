@@ -1,15 +1,10 @@
 # Using a compact OS
-FROM alpine:latest
+FROM centos:latest
 
-MAINTAINER Golfen Guo <golfen.guo@daocloud.io> 
+MAINTAINER karl Zhai <karl.zhai@yunzhihui.com> 
 
-# Install Nginx
-RUN apk --update add nginx
-
-# Add 2048 stuff into Nginx server
-COPY . /usr/share/nginx/html
-
-EXPOSE 80
-
-# Start Nginx and keep it from running background
-CMD ["nginx", "-g", "daemon off;"]
+VOLUME ["/data/www/site_view/", "/data/www/site_view/"]
+#Java exporment
+ENV JAVA_HOME /usr/local/jdk1.7.0_51/
+EXPOSE 6557
+EXPOSE 6558
