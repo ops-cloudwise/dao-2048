@@ -20,4 +20,4 @@ EXPOSE 6557
 EXPOSE 6558
 RUN yum remove wget -y
 RUN rm -f jdk-7u51-linux-x64.gz
-CMD ["./start_pagehar.sh"]
+CMD ["./restart_pagehar.sh"]
