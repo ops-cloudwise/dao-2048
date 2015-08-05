@@ -1,4 +1,3 @@
-#VERSION 0.0.1
 FROM centos:latest
 RUN yum install wget -y
 RUN wget -c http://118.186.220.66:8002/jdk-7u51-linux-x64.gz
