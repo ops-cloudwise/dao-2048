@@ -14,8 +14,8 @@ RUN echo "export PATH=$JAVA_HOME/bin:$PATH" >> /root/.bashrc
 RUN echo "export CLASSPATH=.:$JAVA_HOME/lib/dt.jar:$JAVA_HOME/lib/tools.jar" >> /root/.bashrc
 RUN source /root/.bashrc
 RUN echo "export JAVA_HOME=/usr/local/jdk1.7.0_51/" >> /etc/rc.local
-VOLUME ["/data/www/site_view/", "/data/www/site_view/"]
-WORKDIR /data/www/site_view/
-CMD ["./start_pagehar.sh"]
+VOLUME ["/data/www/site_view/"]
 EXPOSE 6557
 EXPOSE 6558
+WORKDIR /data/www/site_view/
+CMD ["./start_pagehar.sh"]
