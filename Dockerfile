@@ -1,10 +1,9 @@
 #Version 0.0.1
 FROM centos
 RUN yum install wget -y
-WORKDIR /opt
+WORKDIR /data/www/site_view/
 RUN wget -c http://118.186.220.66:8002/jdk-7u51-linux-x64.gz
 RUN tar zxf jdk-7u51-linux-x64.gz -C /usr/local/
-RUN rm -f jdk-7u51-linux-x64.gz
 RUN sed -i 's@jdk.certpath.disabledAlgorithms=MD2, RSA keySize < 1024@#jdk.certpath.disabledAlgorithms=MD2, RSA keySize < 1024@g' /usr/local/jdk1.7.0_51/jre/lib/security/java.security
 RUN ls /usr/bin/java*  | xargs -n 1 -t rm -rf
 RUN ln -s /usr/local/jdk1.7.0_51/bin/java /usr/bin/java
@@ -19,5 +18,6 @@ RUN echo "export JAVA_HOME=/usr/local/jdk1.7.0_51/" >> /etc/rc.local
 VOLUME ["/data/www/site_view/"]
 EXPOSE 6557
 EXPOSE 6558
-WORKDIR /data/www/site_view/
+RUN yum remove wget -y
+RUN rm -f jdk-7u51-linux-x64.gz
 CMD ["./start_pagehar.sh"]
