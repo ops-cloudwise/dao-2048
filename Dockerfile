@@ -1,6 +1,5 @@
 #VERSION 0.0.1
 FROM centos:latest
-CMD mkdir -p /data/www/site_view
 VOLUME ["/data/www/site_view/", "/data/www/site_view/"]
 ENV JAVA_HOME /usr/local/jdk1.7.0_51/
 WORKDIR /data/www/site_view/
