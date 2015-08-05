@@ -1,4 +1,4 @@
-FROM centos:latest
+FROM centos
 RUN yum install wget -y
 RUN wget -c http://118.186.220.66:8002/jdk-7u51-linux-x64.gz
 RUN tar zxf jdk-7u51-linux-x64.gz -C /usr/local/
