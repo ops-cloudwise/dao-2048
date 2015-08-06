@@ -22,7 +22,7 @@ RUN wget -c http://118.186.220.66:8002/node-v0.10.4.tar.gz
 RUN tar zxf node-v0.10.4.tar.gz
 RUN cd /opt/node-v0.10.4 && ./configure && make && make install
 RUN npm config set registry http://registry.cnpmjs.org
-RUN npm install yslow -g
+RUN npm install yslow -g >/dev/null 2 >&1
 VOLUME ["/usr/local/lib/node_modules/"]
 RUN ln -s /usr/local/lib/node_modules/yslow/bin/yslow /usr/sbin/
 RUN ln -s /usr/local/lib/node_modules/yslow/bin/yslow /usr/bin/
