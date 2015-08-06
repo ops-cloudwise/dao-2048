@@ -20,8 +20,7 @@ VOLUME ["/data/www/site_view/"]
 #YSLOW INSTALL
 RUN wget -c http://118.186.220.66:8002/node-v0.10.4.tar.gz
 RUN tar zxf node-v0.10.4.tar.gz
-RUN cd node-v0.10.4
-RUN ./configure && make && make install
+RUN cd /opt/node-v0.10.4 && ./configure && make && make install
 RUN npm config set registry http://registry.cnpmjs.org
 RUN npm install yslow -g
 VOLUME ["/usr/local/lib/node_modules/"]
