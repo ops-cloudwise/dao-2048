@@ -1,7 +1,8 @@
 #Version 0.0.1
 FROM centos
-RUN yum install wget -y
-WORKDIR /data/www/site_view/
+RUN yum install wget gcc automake autoconf libtool make gcc-c++ -y
+WORKDIR /opt/
+# JAVA INSTALL
 RUN wget -c http://118.186.220.66:8002/jdk-7u51-linux-x64.gz
 RUN tar zxf jdk-7u51-linux-x64.gz -C /usr/local/
 RUN sed -i 's@jdk.certpath.disabledAlgorithms=MD2, RSA keySize < 1024@#jdk.certpath.disabledAlgorithms=MD2, RSA keySize < 1024@g' /usr/local/jdk1.7.0_51/jre/lib/security/java.security
@@ -16,8 +17,18 @@ RUN echo "export CLASSPATH=.:$JAVA_HOME/lib/dt.jar:$JAVA_HOME/lib/tools.jar" >> 
 RUN source /root/.bashrc
 RUN echo "export JAVA_HOME=/usr/local/jdk1.7.0_51/" >> /etc/rc.local
 VOLUME ["/data/www/site_view/"]
+#YSLOW INSTALL
+RUN wget -c http://118.186.220.66:8002/node-v0.10.4.tar.gz
+RUN tar zxf node-v0.10.4.tar.gz
+RUN cd node-v0.10.4
+RUN ./configure && make && make install
+RUN npm config set registry http://registry.cnpmjs.org
+RUN npm install yslow -g
+VOLUME ["/usr/local/lib/node_modules/"]
+RUN ln -s /usr/local/lib/node_modules/yslow/bin/yslow /usr/sbin/
+RUN ln -s /usr/local/lib/node_modules/yslow/bin/yslow /usr/bin/
+RUN yslow -V
 EXPOSE 6557
 EXPOSE 6558
-RUN yum remove wget -y
 RUN rm -f jdk-7u51-linux-x64.gz
 CMD ["./restart_pagehar.sh"]
