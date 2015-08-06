@@ -1,5 +1,5 @@
 #Version 0.0.1
-FROM centos
+FROM centos:latest
 RUN yum install wget gcc automake autoconf libtool make gcc-c++ -y
 WORKDIR /opt/
 # JAVA INSTALL
